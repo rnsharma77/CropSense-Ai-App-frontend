@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 85 20% 97%;
+    --foreground: 150 30% 10%;
+
+    --card: 80 15% 95%;
+    --card-foreground: 150 30% 10%;
+
+    --popover: 85 20% 97%;
+    --popover-foreground: 150 30% 10%;
+
+    --primary: 142 50% 28%;
+    --primary-foreground: 80 30% 96%;
+
+    --secondary: 38 70% 55%;
+    --secondary-foreground: 30 50% 12%;
+
+    --muted: 80 15% 90%;
+    --muted-foreground: 150 10% 40%;
+
+    --accent: 142 30% 88%;
+    --accent-foreground: 142 50% 18%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 80 15% 85%;
+    --input: 80 15% 85%;
+    --ring: 142 50% 28%;
+
+    --radius: 0.75rem;
+
+    --hero-gradient: linear-gradient(135deg, hsl(142 50% 28%), hsl(142 40% 38%), hsl(80 40% 45%));
+    --card-gradient: linear-gradient(180deg, hsl(80 15% 95%), hsl(85 20% 97%));
+    --amber-glow: 38 70% 55%;
+    --leaf-light: 80 40% 45%;
+
+    --sidebar-background: 80 15% 95%;
+    --sidebar-foreground: 150 30% 10%;
+    --sidebar-primary: 142 50% 28%;
+    --sidebar-primary-foreground: 80 30% 96%;
+    --sidebar-accent: 142 30% 88%;
+    --sidebar-accent-foreground: 142 50% 18%;
+    --sidebar-border: 80 15% 85%;
+    --sidebar-ring: 142 50% 28%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .bg-card-gradient {
+    background: var(--card-gradient);
+  }
+
+  .shadow-leaf {
+    box-shadow: 0 10px 40px -10px hsl(142 50% 28% / 0.2);
+  }
+
+  .shadow-amber {
+    box-shadow: 0 10px 30px -10px hsl(38 70% 55% / 0.3);
+  }
+}
