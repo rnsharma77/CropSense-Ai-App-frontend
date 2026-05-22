@@ -3,7 +3,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "env": {
-    "VITE_API_BASE_URL": "https://cropsense-backend.onrender.com/api",
+    "VITE_API_BASE_URL": "/api",
     "VITE_ENV": "production",
     "VITE_DEBUG": "false"
   },
@@ -15,7 +15,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://cropsense-backend.onrender.com/api/$1"
+      "destination": "https://cropsense-ai-app-backend.onrender.com/api/$1"
     }
   ],
   "headers": [
