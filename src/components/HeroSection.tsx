@@ -42,7 +42,7 @@ const HeroSection = () => {
                 </Button>
               </Link>
               <Link to="/advisory">
-                <Button size="lg" className="bg-black text-white hover:bg-black/90 backdrop-blur-sm text-base px-8">
+                <Button size="lg" className="bg-white text-green-300 hover:bg-white/90 backdrop-blur-sm text-base px-8">
                   View Advisory
                 </Button>
               </Link>
