@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Leaf, Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [user, setUser] = useState<BackendUser | null>(null);
   const [signingOut, setSigningOut] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const links = [
     { to: "/", label: "Home" },
@@ -64,6 +65,7 @@ const Navbar = () => {
       await signOut();
       setUser(null);
       setOpen(false);
+      navigate('/');
     } finally {
       setSigningOut(false);
     }
