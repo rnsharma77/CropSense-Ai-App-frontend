@@ -8,6 +8,7 @@ import DetectPage from "./pages/DetectPage";
 import AdvisoryPage from "./pages/AdvisoryPage";
 import AccountPage from "./pages/AccountPage";
 import ChatPage from "./pages/ChatPage";
+import HistoryPage from "./pages/HistoryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/detect" element={<DetectPage />} />
+          <Route path="/history" element={<HistoryPage />} />
           <Route path="/advisory" element={<AdvisoryPage />} />
           <Route path="/assistant" element={<ChatPage />} />
           <Route path="/assistant/account" element={<AccountPage />} />

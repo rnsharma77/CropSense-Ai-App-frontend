@@ -252,7 +252,18 @@ export async function signOut() {
   const response = await apiRequest<{ ok: boolean; message?: string }>("/auth/logout", {
     method: "POST",
   });
-
   clearAuthToken();
   return response;
+}
+
+export async function getHistory(skip = 0, limit = 20, disease?: string) {
+  const params = new URLSearchParams();
+  params.set('skip', String(skip));
+  params.set('limit', String(limit));
+  if (disease) params.set('disease', disease);
+  return apiRequest<{ ok: boolean; items: Array<Record<string, any>>; total: number }>(`/history?${params.toString()}`);
+}
+
+export async function deleteHistory(id: string) {
+  return apiRequest<{ ok: boolean; deleted?: boolean }>(`/history/${id}`, { method: 'DELETE' });
 }

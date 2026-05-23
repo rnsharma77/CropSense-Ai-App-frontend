@@ -7,7 +7,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { analyzeCropImage, type DiagnosisResult } from "@/lib/api";
+import { analyzeCropImage, getAuthToken, type DiagnosisResult } from "@/lib/api";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -48,6 +49,7 @@ const DetectPage = () => {
   });
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
+  const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const toggleSection = (key: string) => {
@@ -92,6 +94,29 @@ const DetectPage = () => {
     setLoading(true);
     setError(null);
     setProgress(0);
+
+    // Guest scan limitation: allow up to 3 scans without login
+    const token = getAuthToken();
+    if (!token) {
+      try {
+        const key = 'cropsense_guest_scans';
+        const raw = localStorage.getItem(key);
+        const count = raw ? parseInt(raw, 10) || 0 : 0;
+        if (count >= 3) {
+          const ok = window.confirm('Please login/signup to continue crop analysis and save your history.\n\nWould you like to sign in now?');
+          if (ok) {
+            navigate('/assistant/account?tab=login');
+            return;
+          } else {
+            setError('Sign in required to continue analysis.');
+            return;
+          }
+        }
+        localStorage.setItem(key, String(count + 1));
+      } catch {
+        // ignore storage errors
+      }
+    }
 
     // Simulated progress
     const progressInterval = setInterval(() => {
